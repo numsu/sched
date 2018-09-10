@@ -1,6 +1,8 @@
 # sched
 A "sophisticated" todo -app to handle the time of busy people.
 
+Made with React, NodeJS and MongoDB
+
 # Develop
 
 ```
