@@ -32,7 +32,12 @@ class TaskList extends Component {
         const moma = moment(a.due);
         const momb = moment(b.due);
 
-        if (moma.isSame(momb, 'day')) return Number(a.priority) > Number(b.priority) ? -1 : 1;
+        if (moma.isSame(momb, 'day')) {
+            if (a.priority === b.priority) {
+                return a.task > b.task;
+            }
+            return Number(a.priority) > Number(b.priority) ? -1 : 1;
+        }
         if (moma.isBefore(momb, 'day')) return -1;
         if (moma.isAfter(momb, 'day')) return 1;
     }
@@ -95,12 +100,12 @@ class TaskListItem extends Component {
             return (
                 <div className="task-list-item">
                     <div className="task-list-priority" style={ this.getStyle(task.priority) }>&nbsp;</div>
-                    <div className="task-list-due">{ this.getValue(task.due) }</div>
+                    <div className="task-list-due"><span>{ this.getValue(task.due) }</span></div>
                     <div className="task-list-breadtext">
-                        { task.task }<br />
-                        <span className="task-list-description">{ task.description }</span>
+                        <span>{ task.task }</span><br />
+                        <span><pre className="task-list-description">{ task.description }</pre></span>
                     </div>
-                    <div className="task-list-reference">{ (!!task.reference ? '#' + task.reference : '') }</div>
+                    <div className="task-list-reference"><span>{ (!!task.reference ? '#' + task.reference : '') }</span></div>
                     <div className="task-list-button" onClick={ (e) => this.handleDone(e, task) }><FontAwesomeIcon icon={ faCheck }></FontAwesomeIcon></div>
                 </div>
             );
@@ -108,12 +113,12 @@ class TaskListItem extends Component {
             return (
                 <div className="task-list-item">
                     <div className="task-list-priority" style={ this.getStyle(task.priority) }>&nbsp;</div>
-                    <div className="task-list-due">{ this.getValue(task.due) }</div>
+                    <div className="task-list-due"><span>{ this.getValue(task.due) }</span></div>
                     <div className="task-list-breadtext">
-                        { task.task }<br />
-                        <span className="task-list-description">{ task.description }</span>
+                        <span>{ task.task }</span><br />
+                        <span><pre className="task-list-description">{ task.description }</pre></span>
                     </div>
-                    <div className="task-list-reference">{ (!!task.reference ? '#' + task.reference : '') }</div>
+                    <div className="task-list-reference"><span>{ (!!task.reference ? '#' + task.reference : '') }</span></div>
                     <div className="task-list-button danger" onClick={ (e) => this.handleDelete(e, task) }><FontAwesomeIcon icon={ faTrash }></FontAwesomeIcon></div>
                 </div>
             );

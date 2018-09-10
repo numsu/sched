@@ -10,6 +10,11 @@ body {
     background: #282b30;
 }
 
+pre {
+    margin: 0;
+    white-space: normal;
+}
+
 .input {
     font-family: 'Courier New', sans-serif;
     padding: 20px 18px;
