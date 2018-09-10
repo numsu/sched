@@ -4,6 +4,8 @@ const taskSchema = new mongoose.Schema({
     task: String,
     priority: Number,
     due: String,
+    description: String,
+    reference: String,
     finished: { type: Boolean, default: false }
 });
 const Task = mongoose.model('Task', taskSchema);

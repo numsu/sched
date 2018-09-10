@@ -13,7 +13,7 @@
 .task-list-item {
     background-color: #424549;
     color: #ccc;
-    height: 62px;
+    height: 100%;
     margin-top: 12px;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
 
 .task-list-due {
     height: 100%;
-    width: 130px;
+    min-width: 130px;
     margin-left: 18px;
     margin-right: 18px;
     display: flex;
@@ -31,8 +31,26 @@
 
 .task-list-priority {
     float:left;
-    width: 20px;
+    min-width: 20px;
     height: 100%;
+}
+
+.task-list-breadtext {
+    padding: 30px 0;
+    min-width: 42vw;
+}
+
+.task-list-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+}
+
+.task-list-reference {
+    display: flex;
+    margin: 0 auto 0 40px;
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 100px;
 }
 
 .task-list-button {
@@ -41,7 +59,7 @@
     align-items: center;
     margin-left: auto;
     height: 100%;
-    width: 70px;
+    min-width: 70px;
     background-color: #7a8ed8;
 }
 

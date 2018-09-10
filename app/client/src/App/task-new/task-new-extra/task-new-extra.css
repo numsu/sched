@@ -1,0 +1,36 @@
+.task-new-extra-wrapper {
+    display:flex;
+    background-color: #36393e;
+}
+
+.task-new-extra-left {
+    float: left;
+    border-right: 1px solid #1e2124;
+}
+
+.task-new-extra-right {
+    float: left;
+    width: calc(50vw + 123px);
+}
+
+.task-new-extra-field {
+    margin: 10px;
+}
+
+.task-new-extra-field-input {
+    display: block;
+    border: 1px solid #424549;
+    background-color: #1e2124;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    color: #ccc;
+}
+
+input.task-new-extra-field-input{
+    width: 124px;
+}
+
+textarea.task-new-extra-field-input {
+    resize: none;
+}

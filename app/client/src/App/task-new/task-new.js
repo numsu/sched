@@ -5,6 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import InputNumber from '../common/input-number';
 import InputDate from '../common/input-date';
+import TaskNewExtra from './task-new-extra/task-new-extra';
 
 class TaskNew extends Component {
 
@@ -24,6 +25,8 @@ class TaskNew extends Component {
         this.setState({
             task: '',
             priority: 5,
+            description: '',
+            reference: '',
             due: moment().add(1, 'days')
         });
     }
@@ -70,6 +73,12 @@ class TaskNew extends Component {
                                     modelKey="priority"
                                     modelChange={ this.handleChange } />
                 </div>
+
+                <div className="tasknew-extra-container">
+                    <TaskNewExtra   model={ task }
+                                    modelChange={ this.handleChange } />
+                </div>
+
                 <button type="submit" hidden>Pony</button>
             </form>
         );
