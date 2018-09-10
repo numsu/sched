@@ -109,7 +109,11 @@ class TaskListItem extends Component {
                 <div className="task-list-item">
                     <div className="task-list-priority" style={ this.getStyle(task.priority) }>&nbsp;</div>
                     <div className="task-list-due">{ this.getValue(task.due) }</div>
-                    <div>{ task.task }</div>
+                    <div className="task-list-breadtext">
+                        { task.task }<br />
+                        <span className="task-list-description">{ task.description }</span>
+                    </div>
+                    <div className="task-list-reference">{ (!!task.reference ? '#' + task.reference : '') }</div>
                     <div className="task-list-button danger" onClick={ (e) => this.handleDelete(e, task) }><FontAwesomeIcon icon={ faTrash }></FontAwesomeIcon></div>
                 </div>
             );
