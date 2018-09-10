@@ -12,7 +12,7 @@ body {
 
 pre {
     margin: 0;
-    white-space: normal;
+    white-space: pre-line;
 }
 
 .input {
