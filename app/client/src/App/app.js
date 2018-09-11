@@ -22,7 +22,6 @@ class App extends Component {
 
     updateTaskList = (task = undefined) => {
         if (task) {
-            this.handleTaskEdit({});
             this.tasksOpen = this.tasksOpen.filter(t => t._id !== task._id);
             this.tasksOpen.push(task);
             this.setTasks();
@@ -68,7 +67,8 @@ class App extends Component {
             <div className="app">
                 <div className="tasknew-wrapper">
                     <TaskNew    onSubmit={ (task) => this.updateTaskList(task) }
-                                editTask={ editTask } />
+                                editTask={ editTask }
+                                clearEditTask={ () => this.handleTaskEdit({}) } />
                 </div>
                 <div className="tasklist-tabs-wrapper">
                     <div className="tasklist-tabs">

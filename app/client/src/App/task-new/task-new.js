@@ -38,6 +38,7 @@ class TaskNew extends Component {
     }
 
     init = () => {
+        this.props.clearEditTask();
         this.setState({
             extraContainerVisible: false,
             task: {
@@ -54,8 +55,8 @@ class TaskNew extends Component {
         e.preventDefault();
         if (!this.state.task) return;
         axios.post('/api/task/save', this.state.task).then((task) => {
-            this.init();
             this.props.onSubmit(!!task ? task.data : undefined);
+            this.init();
         });
     }
 

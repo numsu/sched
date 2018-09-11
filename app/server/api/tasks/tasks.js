@@ -8,7 +8,7 @@ router.post('/save', (req, res) => {
             data.task = req.body.task;
             data.priority = req.body.priority;
             data.reference = req.body.reference;
-            data.decription = req.body.description;
+            data.description = req.body.description;
             data.save((err1, data1) => {
                 res.send(data1);
             });
