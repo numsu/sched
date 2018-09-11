@@ -11,6 +11,7 @@ class App extends Component {
     tasksDone = [];
 
     state = {
+        editTask: {},
         tasks: [],
         tab: 1
     }
@@ -19,12 +20,19 @@ class App extends Component {
         this.updateTaskList();
     }
 
-    updateTaskList = () => {
-        axios.get('/api/task/all').then(res => {
-            this.tasksDone = res.data.filter(task => task.finished);
-            this.tasksOpen = res.data.filter(task => !task.finished);
+    updateTaskList = (task = undefined) => {
+        if (task) {
+            this.handleTaskEdit({});
+            this.tasksOpen = this.tasksOpen.filter(t => t._id !== task._id);
+            this.tasksOpen.push(task);
             this.setTasks();
-        });
+        } else {
+            axios.get('/api/task/all').then(res => {
+                this.tasksDone = res.data.filter(task => task.finished);
+                this.tasksOpen = res.data.filter(task => !task.finished);
+                this.setTasks();
+            });
+        }
     }
 
     handleTaskDelete = (id) => {
@@ -39,6 +47,13 @@ class App extends Component {
         this.setTasks();
     }
 
+    handleTaskEdit = (task) => {
+        this.setState({
+            ...this.state,
+            editTask: task
+        });
+    }
+
     setTasks = (tab = undefined) => {
         const tasks = (tab || this.state.tab) === 1 ? this.tasksOpen : this.tasksDone;
         const state = { ...this.state, tasks: tasks };
@@ -48,11 +63,12 @@ class App extends Component {
     }
 
     render() {
-        const { tasks, tab } = this.state;
+        const { editTask, tasks, tab } = this.state;
         return (
             <div className="app">
                 <div className="tasknew-wrapper">
-                    <TaskNew onSubmit={ () => this.updateTaskList() } />
+                    <TaskNew    onSubmit={ (task) => this.updateTaskList(task) }
+                                editTask={ editTask } />
                 </div>
                 <div className="tasklist-tabs-wrapper">
                     <div className="tasklist-tabs">
@@ -63,7 +79,8 @@ class App extends Component {
                 <div className="tasklist-wrapper">
                     <TaskList   tasks={ tasks }
                                 handleDone={ (id) => this.handleTaskDone(id) }
-                                handleDelete={ (id) => this.handleTaskDelete(id) }  />
+                                handleDelete={ (id) => this.handleTaskDelete(id) }
+                                handleEdit={ (task) => this.handleTaskEdit(task) }  />
                 </div>
             </div>
         );

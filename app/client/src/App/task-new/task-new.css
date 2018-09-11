@@ -4,10 +4,29 @@
     padding-top: 120px;
 }
 
+.tasknew-input-container {
+    position: relative;
+}
+
 .tasknew-input {
     width: 50vw;
     background-color: #424549;
     color: #ccc;
+}
+
+.tasknew-input-clear {
+    position: absolute;
+    right: -50px;
+    top: 11px;
+    color: #ccc;
+    font-size: 1.3em;
+    padding: 10px 13px 7px 13px;
+    border-radius: 20px;
+}
+
+.tasknew-input-clear:hover {
+    cursor: pointer;
+    box-shadow: 0 0 15px 15px #424549 inset;
 }
 
 .tasknew-number {
@@ -24,4 +43,20 @@
     text-align: center;
     width: 130px;
     border-right: 1px solid #1e2124;
+}
+
+.tasknew-extra-toggle {
+    color: #ccc;
+    font-size: 1.1em;
+    line-height: 27px;
+    vertical-align: middle;
+    border-top: 1px solid #1e2124;
+    height: 25px;
+    background-color: #1e2124;
+    text-align: center;
+}
+
+.tasknew-extra-toggle:hover {
+    cursor: pointer;
+    background-color: #424549;
 }

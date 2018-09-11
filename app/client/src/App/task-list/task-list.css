@@ -11,10 +11,10 @@
 }
 
 .task-list-item {
-    display: table-row;
     background-color: #424549;
     color: #ccc;
     margin-top: 12px;
+    position: relative;
 }
 
 .task-list-item > div {
@@ -23,7 +23,7 @@
 }
 
 .task-list-breadtext {
-    padding: 20px;
+    padding: 20px 80px 20px 20px;
 }
 
 .task-list-due {
@@ -47,24 +47,52 @@
 }
 
 .task-list-reference {
+    position: absolute;
+    top: 3px;
+    right: 150px;
     font-weight: 600;
     white-space: nowrap;
-    text-align: right;
-    min-width: 120px;
-    padding-right: 20px;
+}
+
+.task-list-button-group {
+    display: flex !important;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .task-list-button {
     text-align: center;
-    height: 100%;
-    width: 100%;
+    height: 58px;
+    line-height: 58px;
     min-width: 40px;
+}
+
+.task-list-button.edit {
+    background-color: #cc9c49;
+}
+
+.task-list-button.edit:hover {
+    cursor: pointer;
+    background-color: #caa667;
+}
+
+.task-list-button.done {
     background-color: #7a8ed8;
 }
 
-.task-list-button:hover {
+.task-list-button.done:hover {
     cursor: pointer;
     background-color: #8597d8;
+}
+
+.task-list-button.danger {
+    background-color: tomato !important;
+}
+
+.task-list-button.danger:hover {
+    cursor: pointer;
+    background-color: rgb(255, 63, 29) !important;
 }
 
 .task-list-button > svg {

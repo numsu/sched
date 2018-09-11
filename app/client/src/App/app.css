@@ -74,11 +74,3 @@ button:focus {
 .tasklist-tab.active {
     border-bottom: 5px solid #7a8ed8;
 }
-
-.danger {
-    background-color: tomato !important;
-}
-
-.danger:hover {
-    background-color: rgb(255, 63, 29) !important;
-}

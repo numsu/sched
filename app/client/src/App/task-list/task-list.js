@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 import './task-list.css';
 import axios from 'axios';
@@ -28,6 +28,10 @@ class TaskList extends Component {
         this.props.handleDelete(id);
     }
 
+    handleEdit = (task) => {
+        this.props.handleEdit(task);
+    }
+
     taskSorter = (a, b) => {
         const moma = moment(a.due);
         const momb = moment(b.due);
@@ -52,7 +56,8 @@ class TaskList extends Component {
                             <TaskListItem   task={ task }
                                             key={ task._id }
                                             handleDone={ () => this.handleDone(task._id) }
-                                            handleDelete={ () => this.handleDelete(task._id) } />)
+                                            handleDelete={ () => this.handleDelete(task._id) }
+                                            handleEdit={ this.handleEdit } />)
                     }
                 </div>
             );
@@ -95,7 +100,7 @@ class TaskListItem extends Component {
     }
 
     render = () => {
-        const { task } = this.props;
+        const { task, handleEdit } = this.props;
         if (!task.finished) {
             return (
                 <div className="task-list-item">
@@ -106,7 +111,10 @@ class TaskListItem extends Component {
                         <span><pre className="task-list-description">{ task.description }</pre></span>
                     </div>
                     <div className="task-list-reference"><span>{ (!!task.reference ? '#' + task.reference : '') }</span></div>
-                    <div className="task-list-button" onClick={ (e) => this.handleDone(e, task) }><FontAwesomeIcon icon={ faCheck }></FontAwesomeIcon></div>
+                    <div className="task-list-button-group">
+                        <span className="task-list-button edit" onClick={ (e) => handleEdit(task) }><FontAwesomeIcon icon={ faPen }></FontAwesomeIcon></span>
+                        <span className="task-list-button done" onClick={ (e) => this.handleDone(e, task) }><FontAwesomeIcon icon={ faCheck }></FontAwesomeIcon></span>
+                    </div>
                 </div>
             );
         } else {
@@ -119,7 +127,9 @@ class TaskListItem extends Component {
                         <span><pre className="task-list-description">{ task.description }</pre></span>
                     </div>
                     <div className="task-list-reference"><span>{ (!!task.reference ? '#' + task.reference : '') }</span></div>
-                    <div className="task-list-button danger" onClick={ (e) => this.handleDelete(e, task) }><FontAwesomeIcon icon={ faTrash }></FontAwesomeIcon></div>
+                    <div className="task-list-button-group">
+                        <div className="task-list-button danger" onClick={ (e) => this.handleDelete(e, task) }><FontAwesomeIcon icon={ faTrash }></FontAwesomeIcon></div>
+                    </div>
                 </div>
             );
         }
