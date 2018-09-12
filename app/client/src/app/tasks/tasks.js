@@ -64,7 +64,7 @@ class Tasks extends Component {
     render() {
         const { editTask, tasks, tab } = this.state;
         return (
-            <div className="app">
+            <div className="tasks-wrapper">
                 <div className="tasknew-wrapper">
                     <TaskNew    onSubmit={ (task) => this.updateTaskList(task) }
                                 editTask={ editTask }
