@@ -12,7 +12,7 @@ class App extends Component {
 
     state = {
         editTask: {},
-        tasks: [],
+        tasks: undefined,
         tab: 1
     }
 

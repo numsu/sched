@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
+import '../loader.css';
 import './task-list.css';
 import axios from 'axios';
 import moment from 'moment';
@@ -9,7 +10,7 @@ import moment from 'moment';
 class TaskList extends Component {
 
     state = {
-        tasks: []
+        tasks: undefined
     }
 
     constructor(props) {
@@ -48,7 +49,13 @@ class TaskList extends Component {
 
     render = () => {
         const { tasks } = this.state;
-        if (tasks.length > 0) {
+        if (!tasks) {
+            return (
+                <div className="task-list">
+                    <div className="task-list-clear"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+                </div>
+            );
+        } else if (tasks.length > 0) {
             return (
                 <div className="task-list">
                     {
@@ -61,7 +68,7 @@ class TaskList extends Component {
                     }
                 </div>
             );
-        } else {
+        } else if (tasks.length === 0) {
             return (
                 <div className="task-list">
                     <div className="task-list-clear">Cleared! Go ahead and grab a ☕, you superstar 😎🦄</div>
