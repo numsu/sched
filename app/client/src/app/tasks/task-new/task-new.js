@@ -5,8 +5,8 @@ import { faAngleDoubleDown, faAngleDoubleUp, faTimes } from '@fortawesome/free-s
 import './task-new.css';
 import axios from 'axios';
 import moment from 'moment';
-import InputNumber from '../common/input-number';
-import InputDate from '../common/input-date';
+import InputNumber from '../../common/elements/input-number';
+import InputDate from '../../common/elements/input-date';
 import TaskNewExtra from './task-new-extra/task-new-extra';
 
 class TaskNew extends Component {

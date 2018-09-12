@@ -26,6 +26,9 @@ router.get('/all', (req, res) => {
 });
 
 router.patch('/done', (req, res) => {
+    if (!req.body.id) {
+        res.sendStatus(400);
+    }
     db.findTask(req.body.id, (err, data) => {
         data.finished = true;
         data.save((err1, data1) => {

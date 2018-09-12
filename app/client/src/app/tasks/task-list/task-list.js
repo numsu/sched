@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
-import '../loader.css';
+import '../../common/css/loader.css';
 import './task-list.css';
 import axios from 'axios';
 import moment from 'moment';
