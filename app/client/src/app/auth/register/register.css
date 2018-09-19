@@ -1,0 +1,66 @@
+.register-container {
+    background:rgba(58,63,68,0.5);
+    border-radius: 5px;
+    box-shadow: 0 1.5px 0 0 rgba(0,0,0,0.1);
+    width:450px;
+    display: flex;
+    flex-direction: column;
+    margin: 100px auto 0 auto;
+    padding: 30px 10px;
+}
+
+.register-logo {
+    font-size:20px;
+    text-align: center;
+    padding: 20px 20px 0;
+    margin:0;
+    color: #ccc;
+}
+
+.register-input-group {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.register-input-group > svg {
+    position: absolute;
+    left: 13px;
+    top: 10px;
+    color: #ccc;
+}
+
+.register-item {
+	color: #ffff;
+	padding:25px 25px 0;
+	margin: 20px 20px 0;
+	border-radius: 3px;
+}
+
+.register-input {
+    border: 0;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 10px 10px 10px 40px;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+    width: calc(100% - 50px);
+    color: #ccc;
+    background-color: #424549;
+}
+
+.register-submit {
+    width: 100%;
+    margin: 10px 0;
+    padding: 7px;
+    background-color: #7289da;
+    border: 0;
+    color: #ccc;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.register-submit:hover {
+    background-color: #8597d8;
+}

@@ -1,2 +1,2 @@
-module.exports.Task = require('./tasks.model');
-module.exports.tasks = require('./tasks');
+module.exports.Task = require('./MTask');
+module.exports.tasks = require('./TasksRepository');

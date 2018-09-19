@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const db = require('../../db/tasks').tasks;
+const taskRepository = require('../../db/tasks').tasks;
 
 router.post('/save', (req, res) => {
     if (req.body._id) {
-        db.findTask(req.body._id, (err, data) => {
+        taskRepository.findById(req.body._id, (err, data) => {
             data.due = req.body.due;
             data.task = req.body.task;
             data.priority = req.body.priority;
@@ -14,13 +14,13 @@ router.post('/save', (req, res) => {
             });
         });
     } else {
-        db.saveTask(req.body);
+        taskRepository.save(req.body);
         res.end();
     }
 });
 
 router.get('/all', (req, res) => {
-    db.getTasks((err, data) => {
+    taskRepository.findAll((err, data) => {
         res.send(data);
     });
 });
@@ -29,7 +29,7 @@ router.patch('/done', (req, res) => {
     if (!req.body.id) {
         res.sendStatus(400);
     }
-    db.findTask(req.body.id, (err, data) => {
+    taskRepository.findById(req.body.id, (err, data) => {
         data.finished = true;
         data.save((err1, data1) => {
             res.end();
@@ -38,7 +38,7 @@ router.patch('/done', (req, res) => {
 });
 
 router.delete('/delete', (req, res) => {
-    db.deleteTask(req.body.id, (err, data) => {
+    taskRepository.deleteOne(req.body.id, (err, data) => {
         res.end();
     });
 });

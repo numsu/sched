@@ -1,2 +1,2 @@
-module.exports.tasks = require('./tasks');
+module.exports.tasks = require('./TasksController');
 
