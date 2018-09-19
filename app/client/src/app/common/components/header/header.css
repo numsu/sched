@@ -1,17 +1,39 @@
 
-.header {
-    height: 25px;
+.nav {
+    display: flex;
+    height: 46px;
+    align-items: center;
+    padding: 5px 20px;
     background-color: #1e2124;
-    padding: 5px 14vw;
-}
-
-.navbar {
-
-}
-
-.text-logo {
     margin: 0;
-    color: #7289da;
-    letter-spacing: 1px;
-    font-size: 1.4em;
+}
+
+.nav > ul {
+    padding: 0;
+    list-style: none;
+}
+
+.nav > li {
+    list-style-type: none;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.logo > svg {
+    color: #7289da !important;
+}
+
+.logo {
+    font-size: 1.5em;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.nav a, .nav svg {
+    text-decoration: none;
+    color: #ccc;
+}
+
+.nav svg {
+    margin-right: 8px;
 }
