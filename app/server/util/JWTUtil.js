@@ -8,14 +8,14 @@ const verify = (req, res, next) => {
     const token = req.headers['x-access-token'];
     if (!token) {
         console.log('No token');
-        res.sendStatus(403);
+        res.sendStatus(401);
         return;
     }
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
             console.log(err);
-            res.sendStatus(403);
+            res.sendStatus(401);
             return;
         }
 

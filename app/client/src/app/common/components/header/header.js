@@ -9,7 +9,7 @@ import auth from '../../util/auth-util';
 class Header extends Component {
 
     state = {
-        authenticated: true
+        authenticated: false
     }
 
     componentDidMount = () => {
