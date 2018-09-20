@@ -1,19 +1,24 @@
-import axios from 'axios';
+import http from './http-util';
+import { EventEmitter } from 'events';
 
 const auth = {
     user: undefined,
-    isAuthenticated: false,
+    token: undefined,
+    _authenticated: false,
+    _authenticationEvent: new EventEmitter(),
 
     verify: (callback) => {
-        const auth = localStorage.getItem('auth');
-        if (!auth) {
-            this.isAuthenticated = false;
+        const token = localStorage.getItem('auth');
+        if (!token) {
+            auth._authenticated = false;
             callback(false);
         }
 
-        axios.post('/api/auth/check', { token: auth }).then(res => {
-            this.user = res;
-            this.isAuthenticated = true;
+        http().post('/auth/check', { token: token }).then(res => {
+            auth.user = res.data.user;
+            auth.token = res.data.token;
+            auth._authenticated = true;
+            auth._authenticationEvent.emit('loginChange', true);
             callback(true);
         }, () => {
             callback(false);
@@ -21,10 +26,12 @@ const auth = {
     },
 
     login: (user, callback) => {
-        axios.post('/api/auth/login', user).then(res => {
-            localStorage.setItem('auth', res);
-            this.user = res;
-            this.isAuthenticated = true;
+        http().post('/auth/login', user).then(res => {
+            localStorage.setItem('auth', res.data.token);
+            auth.user = res.data.user;
+            auth.token = res.data.token;
+            auth._authenticated = true;
+            auth._authenticationEvent.emit('loginChange', true);
             callback(true);
         }, () => {
             callback(false);
@@ -32,18 +39,27 @@ const auth = {
     },
 
     register: (user, callback) => {
-        axios.post('/api/auth/register', user).then(res => {
+        http().post('/auth/register', user).then(res => {
             callback(true);
         }, () => {
             callback(false);
         })
     },
 
-    logout: (callback) => {
+    logout: () => {
         localStorage.removeItem('auth');
-        this.user = undefined;
-        this.isAuthenticated = false;
-        callback(true);
+        auth.user = undefined;
+        auth.token = undefined;
+        auth._authenticated = false;
+        auth._authenticationEvent.emit('loginChange', false);
+    },
+
+    isAuthenticated: () => {
+        return auth._authenticated;
+    },
+
+    getAuthEvent: () => {
+        return auth._authenticationEvent;
     }
 }
 

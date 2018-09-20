@@ -1,6 +1,7 @@
 const mongoose = require('../../util').client.getMongoose();
 
 const taskSchema = new mongoose.Schema({
+    userId: String,
     task: String,
     priority: Number,
     due: String,

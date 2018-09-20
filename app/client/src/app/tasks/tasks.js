@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './tasks.css';
-import axios from 'axios';
+import http from '../common/util/http-util';
 import TaskNew from './task-new/task-new';
 import TaskList from './task-list/task-list';
 
@@ -26,7 +26,7 @@ class Tasks extends Component {
             this.tasksOpen.push(task);
             this.setTasks();
         } else {
-            axios.get('/api/task/all').then(res => {
+            http().get('/task/all').then(res => {
                 this.tasksDone = res.data.filter(task => task.finished);
                 this.tasksOpen = res.data.filter(task => !task.finished);
                 this.setTasks();

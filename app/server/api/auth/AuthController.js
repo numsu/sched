@@ -8,14 +8,12 @@ router.post('/register', (req, res) => {
 
     userRepository.findByLogin(body.username, (err, users) => {
         if (err || users.length !== 0) {
-            res.sendStatus(500).send('Username taken');
+            console.log(err || 'User already registered');
+            res.sendStatus(500);
+            return;
         }
 
-        console.log(body.password);
-
         const hash = bcrypt.hashSync(body.password, 8);
-
-        console.log(hash);
 
         userRepository.save({
             ...body,
@@ -31,24 +29,51 @@ router.post('/login', (req, res) => {
 
     userRepository.findByLogin(body.username, (err, users) => {
         if (err || users.length === 0) {
+            console.log(err || 'No user found for login');
             res.sendStatus(401);
             return;
         }
 
         const user = users[0];
 
-        const hash = bcrypt.hashSync(body.password, 8);
-
-        console.log(hash);
-        console.log(user.password);
-
-        if (bcrypt.compareSync(body.password, user.password)) {
+        if (!bcrypt.compareSync(body.password, user.password)) {
+            console.log('Invalid password');
             res.sendStatus(401);
             return;
         }
 
         const token = jwt.sign(user);
-        res.send({ token: token });
+        user.password = undefined;
+        res.send({ token: token, user: user });
+    });
+});
+
+router.post('/check', (req, res) => {
+    const body = req.body;
+
+    if (!body.token) {
+        console.log('No token in request');
+        res.sendStatus(401);
+        return;
+    }
+
+    jwt.decode(body.token, (err, decoded) => {
+        if (err) {
+            console.log(err);
+            res.sendStatus(401);
+            return;
+        }
+
+        userRepository.findById(decoded.id, (err, data) => {
+            if (err) {
+                console.log(err);
+                res.sendStatus(401);
+                return;
+            }
+
+            data.password = undefined;
+            res.send({ token: body.token, user: data })
+        });
     });
 });
 

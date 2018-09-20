@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import './task-new.css';
-import axios from 'axios';
+import http from '../../common/util/http-util';
 import moment from 'moment';
 import InputNumber from '../../common/components/input-number';
 import InputDate from '../../common/components/input-date';
@@ -54,7 +54,7 @@ class TaskNew extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (!this.state.task) return;
-        axios.post('/api/task/save', this.state.task).then((task) => {
+        http().post('/task/save', this.state.task).then((task) => {
             this.props.onSubmit(!!task ? task.data : undefined);
             this.init();
         });

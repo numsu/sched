@@ -4,7 +4,7 @@ import { faCheck, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 import '../../common/css/loader.css';
 import './task-list.css';
-import axios from 'axios';
+import http from '../../common/util/http-util';
 import moment from 'moment';
 
 class TaskList extends Component {
@@ -95,13 +95,13 @@ class TaskListItem extends Component {
     }
 
     handleDone = (e, task) => {
-        axios.patch('/api/task/done', { id: task._id }).then(() => {
+        http().patch('/task/done', { id: task._id }).then(() => {
             this.props.handleDone(task._id);
         });
     }
 
     handleDelete = (e, task) => {
-        axios.delete('/api/task/delete', { id: task._id }).then(() => {
+        http().delete('/task/delete', { id: task._id }).then(() => {
             this.props.handleDelete(task._id);
         });
     }

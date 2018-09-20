@@ -12,8 +12,12 @@ const findById = (id, callback) => {
     Task.findById(id, callback);
 }
 
+const findByUser = (userId, callback) => {
+    Task.find({ userId: userId }, callback);
+}
+
 const deleteOne = (id, callback) => {
     Task.deleteOne({ id: id }, callback);
 }
 
-module.exports = { findAll, save, findById, deleteOne };
+module.exports = { findAll, save, findById, findByUser, deleteOne };
