@@ -8,7 +8,7 @@ router.post('/register', (req, res) => {
 
     userRepository.findByLogin(body.username, (err, users) => {
         if (err || users.length !== 0) {
-            console.log(err || 'User already registered');
+            console.error(err || 'User already registered');
             res.sendStatus(500);
             return;
         }
@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
 
     userRepository.findByLogin(body.username, (err, users) => {
         if (err || users.length === 0) {
-            console.log(err || 'No user found for login');
+            console.error(err || 'No user found for login');
             res.sendStatus(401);
             return;
         }
@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
         const user = users[0];
 
         if (!bcrypt.compareSync(body.password, user.password)) {
-            console.log('Invalid password');
+            console.error('Invalid password');
             res.sendStatus(401);
             return;
         }
@@ -52,21 +52,21 @@ router.post('/check', (req, res) => {
     const body = req.body;
 
     if (!body.token) {
-        console.log('No token in request');
+        console.error('No token in request');
         res.sendStatus(401);
         return;
     }
 
     jwt.decode(body.token, (err, decoded) => {
         if (err) {
-            console.log(err);
+            console.error(err);
             res.sendStatus(401);
             return;
         }
 
         userRepository.findById(decoded.id, (err, data) => {
             if (err) {
-                console.log(err);
+                console.error(err);
                 res.sendStatus(401);
                 return;
             }
