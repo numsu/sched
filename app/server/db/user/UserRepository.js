@@ -8,8 +8,8 @@ const findByLogin = (username, callback) => {
     User.find({ username: username }, callback);
 }
 
-const save = (user) => {
-    new User(user).save();
+const save = (user, callback = undefined) => {
+    new User(user).save(callback);
 }
 
 module.exports = { findById, save, findByLogin };

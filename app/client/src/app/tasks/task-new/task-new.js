@@ -4,6 +4,7 @@ import { faAngleDoubleDown, faAngleDoubleUp, faTimes } from '@fortawesome/free-s
 
 import './task-new.css';
 import http from '../../common/util/http-util';
+import boardUtil from '../../common/util/board-util';
 import moment from 'moment';
 import InputNumber from '../../common/components/input-number';
 import InputDate from '../../common/components/input-date';
@@ -54,9 +55,12 @@ class TaskNew extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if (!this.state.task) return;
-        http().post('/task/save', this.state.task).then((task) => {
+        const task = { ...this.state.task };
+        task.board = boardUtil.activeBoard;
+        http().post('/task/save', task).then((task) => {
             this.props.onSubmit(!!task ? task.data : undefined);
             this.init();
+            boardUtil.addTaskToBoard(task);
         });
     }
 

@@ -1,0 +1,40 @@
+.boardnew-input {
+    padding: 5px;
+    font-size: 1em;
+    background-color: #424549;
+    color: #ccc;
+    width: 69.3%;
+}
+
+.boardnew-button {
+    border: none;
+    padding: 6px 10px;
+    text-align: center;
+}
+
+.boardnew-button > svg {
+    margin: 0;
+}
+
+.boardnew-button.primary {
+    background-color: #7a8ed8;
+}
+
+.boardnew-button.primary:hover {
+    cursor: pointer;
+    background-color: #8597d8;
+}
+
+.boardnew-button.danger {
+    background-color: tomato !important;
+}
+
+.boardnew-button.danger:hover {
+    cursor: pointer;
+    background-color: rgb(255, 63, 29) !important;
+}
+
+.dropdown-content-info {
+    float: right;
+    font-size: 0.8em;
+}

@@ -1,13 +1,14 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const userRepository = require('../../db/user').user;
+const boardRepository = require('../../db/board').board;
 const jwt = require('../../util/JWTUtil');
 
 router.post('/register', (req, res) => {
     const body = req.body;
 
     userRepository.findByLogin(body.username, (err, users) => {
-        if (err || users.length !== 0) {
+        if (err || !users || users.length !== 0) {
             console.error(err || 'User already registered');
             res.sendStatus(500);
             return;
@@ -18,9 +19,16 @@ router.post('/register', (req, res) => {
         userRepository.save({
             ...body,
             password: hash
-        });
+        }, (err, savedUser) => {
+            if (err || !savedUser) {
+                console.error(err);
+                res.sendStatus(500);
+                return;
+            }
 
-        res.end();
+            boardRepository.save({ user: savedUser._id, name: savedUser.name + '\'s board' });
+            res.end();
+        });
     });
 });
 
@@ -28,7 +36,7 @@ router.post('/login', (req, res) => {
     const body = req.body;
 
     userRepository.findByLogin(body.username, (err, users) => {
-        if (err || users.length === 0) {
+        if (err || !users || users.length === 0) {
             console.error(err || 'No user found for login');
             res.sendStatus(401);
             return;
@@ -65,7 +73,7 @@ router.post('/check', (req, res) => {
         }
 
         userRepository.findById(decoded.id, (err, data) => {
-            if (err) {
+            if (err || !data) {
                 console.error(err);
                 res.sendStatus(401);
                 return;

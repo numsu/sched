@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 import './tasks.css';
 import http from '../common/util/http-util';
+import boardUtil from '../common/util/board-util';
 import TaskNew from './task-new/task-new';
 import TaskList from './task-list/task-list';
 
 class Tasks extends Component {
 
+    activeBoard = '';
     tasksOpen = [];
     tasksDone = [];
 
@@ -17,6 +19,11 @@ class Tasks extends Component {
     }
 
     componentDidMount = () => {
+        this.activeBoard = boardUtil.activeBoard;
+        boardUtil.getActiveBoardChangedEvent().addListener('activeBoardChange', (activeBoard) => {
+            this.activeBoard = activeBoard;
+            this.updateTaskList();
+        });
         this.updateTaskList();
     }
 
@@ -26,7 +33,7 @@ class Tasks extends Component {
             this.tasksOpen.push(task);
             this.setTasks();
         } else {
-            http().get('/task/all').then(res => {
+            http().get('/task/all/' + this.activeBoard).then(res => {
                 this.tasksDone = res.data.filter(task => task.finished);
                 this.tasksOpen = res.data.filter(task => !task.finished);
                 this.setTasks();

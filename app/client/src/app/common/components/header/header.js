@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faSignInAlt, faTasks } from '@fortawesome/free-solid-svg-icons'
 
 import './header.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardList, faUser, faSignInAlt, faTasks } from '@fortawesome/free-solid-svg-icons'
+import BoardDropdown from './boards/board-dropdown';
 import auth from '../../util/auth-util';
 
 class Header extends Component {
@@ -23,8 +24,7 @@ class Header extends Component {
         if (authenticated) {
             return (
                 <ul className="nav" role="navigation">
-                    <li><FontAwesomeIcon icon={ faClipboardList } /><Link to="/">My tasks</Link></li>
-                    <li><FontAwesomeIcon icon={ faClipboardList } /><Link to="/">Boards</Link></li>
+                    <BoardDropdown />
                     <li className="logo"><FontAwesomeIcon icon={ faTasks } /></li>
                     <li><FontAwesomeIcon icon={ faUser } /><Link to="/profile">Profile</Link></li>
                     <li><FontAwesomeIcon icon={ faSignInAlt } /><Link to="/logout">Logout</Link></li>
@@ -41,4 +41,4 @@ class Header extends Component {
 
 }
 
-export default Header
+export default Header;

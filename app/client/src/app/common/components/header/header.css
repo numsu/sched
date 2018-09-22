@@ -17,6 +17,9 @@
     list-style-type: none;
     cursor: pointer;
     margin-right: 20px;
+    height: 100%;
+    line-height: 42px;
+    margin-bottom: -10px;
 }
 
 .logo > svg {
@@ -29,7 +32,7 @@
     margin-right: auto !important;
 }
 
-.nav a, .nav svg {
+.nav a, .nav svg, .nav span {
     text-decoration: none;
     border: none;
     color: #ccc;
