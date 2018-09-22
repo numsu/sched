@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
-const userRepository = require('../../db/user').user;
-const boardRepository = require('../../db/board').board;
+const userRepository = require('../../db/user/UserRepository');
+const boardRepository = require('../../db/board/BoardRepository');
 const jwt = require('../../util/JWTUtil');
 
 router.post('/register', (req, res) => {

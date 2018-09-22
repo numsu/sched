@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const taskRepository = require('../../db/tasks').tasks;
-const boardRepository = require('../../db/board').board;
+const taskRepository = require('../../db/tasks/TasksRepository');
+const boardRepository = require('../../db/board/BoardRepository');
 
 router.post('/save', (req, res) => {
     if (req.body._id) {

@@ -1,4 +1,4 @@
-const Task = require('./MTask');
+const Task = require('./TaskModel');
 
 const findAll = (callback) => {
     Task.find({}, callback);

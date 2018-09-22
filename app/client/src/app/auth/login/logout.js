@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import auth from '../../common/util/auth-util';
+import auth from '../../common/util/auth-service';
 
 class Logout extends Component {
     componentWillMount = () => {

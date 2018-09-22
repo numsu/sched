@@ -1,4 +1,4 @@
-const mongoose = require('../../util').client.getMongoose();
+const mongoose = require('../../util/MongooseClient').getMongoose();
 
 const userSchema = new mongoose.Schema({
     name: String,

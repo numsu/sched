@@ -1,4 +1,4 @@
-const User = require('./MUser');
+const User = require('./UserModel');
 
 const findById = (id, callback) => {
     User.findById(id, callback);

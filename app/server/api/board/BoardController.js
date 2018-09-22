@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const boardRepository = require('../../db/board').board;
+const boardRepository = require('../../db/board/BoardRepository');
 
 router.post('/save', (req, res) => {
     boardRepository.save({

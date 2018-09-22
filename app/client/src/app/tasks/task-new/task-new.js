@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import './task-new.css';
-import http from '../../common/util/http-util';
-import boardUtil from '../../common/util/board-util';
+import http from '../../common/util/http-service';
+import boardUtil from '../../common/util/board-service';
 import moment from 'moment';
 import InputNumber from '../../common/components/input-number';
 import InputDate from '../../common/components/input-date';

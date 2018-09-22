@@ -1,4 +1,4 @@
-const Board = require('./MBoard');
+const Board = require('./BoardModel');
 
 const save = (board, callback) => {
     new Board(board).save(callback);

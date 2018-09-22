@@ -4,7 +4,7 @@ import { faCheck, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 import '../../common/css/loader.css';
 import './task-list.css';
-import http from '../../common/util/http-util';
+import http from '../../common/util/http-service';
 import moment from 'moment';
 
 class TaskList extends Component {

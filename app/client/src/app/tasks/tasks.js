@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import './tasks.css';
-import http from '../common/util/http-util';
-import boardUtil from '../common/util/board-util';
+import http from '../common/util/http-service';
+import boardUtil from '../common/util/board-service';
 import TaskNew from './task-new/task-new';
 import TaskList from './task-list/task-list';
 

@@ -5,7 +5,7 @@ import { faUser, faSignInAlt, faTasks } from '@fortawesome/free-solid-svg-icons'
 
 import './header.css';
 import BoardDropdown from './boards/board-dropdown';
-import auth from '../../util/auth-util';
+import auth from '../../util/auth-service';
 
 class Header extends Component {
 

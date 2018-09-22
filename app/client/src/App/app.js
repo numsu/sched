@@ -7,7 +7,7 @@ import Login from './auth/login/login';
 import Logout from './auth/login/logout';
 import Register from './auth/register/register';
 import Header from './common/components/header/header';
-import auth from './common/util/auth-util';
+import auth from './common/util/auth-service';
 
 class RedirectNotLoggedIn extends Component {
 

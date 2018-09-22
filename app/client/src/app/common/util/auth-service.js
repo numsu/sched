@@ -1,4 +1,4 @@
-import http from './http-util';
+import http from './http-service';
 import { EventEmitter } from 'events';
 
 const auth = {

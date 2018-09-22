@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardList, faSortDown, faPlus, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import './board-dropdown.css';
-import boardUtil from '../../../util/board-util';
+import boardUtil from '../../../util/board-service';
 
 class BoardDropdown extends Component {
 

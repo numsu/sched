@@ -1,4 +1,4 @@
-const mongoose = require('../../util').client.getMongoose();
+const mongoose = require('../../util/MongooseClient').getMongoose();
 const Schema = mongoose.Schema;
 
 const taskSchema = new mongoose.Schema({

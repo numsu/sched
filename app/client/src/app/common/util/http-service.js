@@ -1,5 +1,5 @@
 import axios from 'axios';
-import auth from './auth-util';
+import auth from './auth-service';
 
 const http = () => {
     const http = axios.create({

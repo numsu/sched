@@ -8,7 +8,7 @@ const helmet = require('helmet');
 
 const port = process.env.PORT || 8000;
 
-const mongoose = require('./util').client;
+const mongoose = require('./util/MongooseClient');
 mongoose.connect();
 
 app.use(cors());
@@ -20,7 +20,7 @@ app.get('/', (req, res)=> {
     res.send('Nothing to see here. Move along.');
 });
 
-app.use('/api', require('./api').api);
+app.use('/api', require('./api/ApiController'));
 
 // Serve the React app on every other request
 app.get('*', (req, res) => {
