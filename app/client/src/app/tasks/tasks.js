@@ -48,8 +48,9 @@ class Tasks extends Component {
 
     handleTaskDone = (id) => {
         const tasksToMove = this.tasksOpen.filter((task) => task._id === id);
-        this.tasksOpen  = this.tasksOpen.filter((task) => task._id !== id);
+        this.tasksOpen = this.tasksOpen.filter((task) => task._id !== id);
         this.tasksDone.push({ ...tasksToMove[0], finished: true });
+        boardUtil.removeTaskFromBoard(id);
         this.setTasks();
     }
 

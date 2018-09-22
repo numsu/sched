@@ -60,7 +60,7 @@ class TaskNew extends Component {
         http().post('/task/save', task).then((task) => {
             this.props.onSubmit(!!task ? task.data : undefined);
             this.init();
-            boardUtil.addTaskToBoard(task);
+            boardUtil.addTaskToBoard(task._id);
         });
     }
 

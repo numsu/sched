@@ -101,7 +101,7 @@ class TaskListItem extends Component {
     }
 
     handleDelete = (e, task) => {
-        http().delete('/task/delete', { id: task._id }).then(() => {
+        http().delete('/task/delete/' + task._id).then(() => {
             this.props.handleDelete(task._id);
         });
     }

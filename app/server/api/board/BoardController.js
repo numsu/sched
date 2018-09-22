@@ -35,7 +35,8 @@ router.delete('/delete', (req, res) => {
             res.sendStatus(500);
             return;
         }
-        if (data.user !== req.userId) {
+
+        if (data.user != req.userId) {
             console.error('User id does not match saved');
             res.sendStatus(403);
             return;

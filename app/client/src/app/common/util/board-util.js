@@ -37,10 +37,16 @@ const auth = {
         auth._activeBoardChangeEvent.emit('activeBoardChange', newBoard);
     },
 
-    addTaskToBoard: (task) => {
-        const board = auth.boards.filter(board => board._id === auth.activeBoard);
-        board[0].tasks.push(task._id);
+    addTaskToBoard: (id) => {
+        const board = auth.boards.filter(board => board._id == auth.activeBoard);
+        board[0].tasks.push(id);
         auth.changeActiveBoard(auth.activeBoard);
+    },
+
+    removeTaskFromBoard: (id) => {
+        const board = auth.boards.filter(board => board._id == auth.activeBoard);
+        board[0].tasks = board[0].tasks.filter(task => task._id != id);
+        auth.changeActiveBoard();
     },
 
     getActiveBoardChangedEvent: () => {

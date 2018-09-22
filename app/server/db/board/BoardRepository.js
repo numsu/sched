@@ -9,7 +9,13 @@ const findById = (boardId, callback) => {
 }
 
 const findByUser = (userId, callback) => {
-    Board.find({ user: userId }).exec(callback);
+    Board.find({ user: userId }).populate({
+        path: 'tasks',
+        select: '_id',
+        match: {
+            finished: false
+        }
+    }).exec(callback);
 }
 
 const deleteOne = (id, callback) => {

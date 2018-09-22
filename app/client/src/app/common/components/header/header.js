@@ -25,6 +25,7 @@ class Header extends Component {
             return (
                 <ul className="nav" role="navigation">
                     <BoardDropdown />
+                    <li>&nbsp;</li>
                     <li className="logo"><FontAwesomeIcon icon={ faTasks } /></li>
                     <li><FontAwesomeIcon icon={ faUser } /><Link to="/profile">Profile</Link></li>
                     <li><FontAwesomeIcon icon={ faSignInAlt } /><Link to="/logout">Logout</Link></li>

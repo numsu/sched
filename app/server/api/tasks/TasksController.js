@@ -11,7 +11,7 @@ router.post('/save', (req, res) => {
                 return;
             }
 
-            if (data.user !== req.userId) {
+            if (data.user != req.userId) {
                 console.error('User id does not match saved');
                 res.sendStatus(403);
                 return;
@@ -83,7 +83,7 @@ router.patch('/done', (req, res) => {
             return;
         }
 
-        if (data.user !== req.userId) {
+        if (data.user != req.userId) {
             console.error('User id does not match saved');
             res.sendStatus(403);
             return;
@@ -102,14 +102,15 @@ router.patch('/done', (req, res) => {
     });
 });
 
-router.delete('/delete', (req, res) => {
-    taskRepository.findById(req.body.id, (err, data) => {
+router.delete('/delete/:id', (req, res) => {
+    taskRepository.findById(req.params.id, (err, data) => {
         if (err || !data) {
             console.error(err);
             res.sendStatus(500);
             return;
         }
-        if (data.user !== req.userId) {
+
+        if (data.user != req.userId) {
             console.error('User id does not match saved');
             res.sendStatus(403);
             return;
