@@ -10,7 +10,7 @@
 	},
     "scripts": {
         "client-dev": "webpack-dev-server --port 4000 --hot --inline --watch --progress",
-        "server-dev": "opn http://localhost:8000 && nodemon ./app/server/server.js localhost 8000",
+        "server-dev": "opn http://localhost:8080 && nodemon ./app/server/server.js localhost 8080",
         "server:prod": "nodemon ./app/server/server.js",
 		"build": "webpack -p",
         "docker:build": "docker build --squash -t numsu/sched:1.0.0 .",
