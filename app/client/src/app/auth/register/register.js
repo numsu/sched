@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import auth from '../../common/util/auth-service';
-import './Register.css';
+import './register.css';
 
 class Register extends Component {
 
