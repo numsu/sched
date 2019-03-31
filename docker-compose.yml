@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+    sched:
+        image: numsu/sched:1.0.0
+        restart: always
+        environment:
+        - DB_URL=mongodb://sched:changeit@mongo:27017/sched
+        - JWT_SECRET=changeit
+        - JWT_EXPIRES=8h
+        ports:
+          - "8080:8080"
+        links:
+          - mongo:mongo
+        depends_on:
+          - mongo
+    mongo:
+        image: aashreys/mongo-auth
+        environment:
+         - AUTH=yes
+         - MONGODB_ADMIN_USER=root
+         - MONGODB_ADMIN_PASS=changeit
+         - MONGODB_APPLICATION_DATABASE=sched
+         - MONGODB_APPLICATION_USER=sched
+         - MONGODB_APPLICATION_PASS=changeit
+        volumes:
+          - mongodb_data:/data/db
+        ports:
+          - 27017:27017
+
+volumes:
+  mongodb_data:
+    driver: local

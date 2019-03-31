@@ -1,9 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  entry: path.resolve(__dirname, 'app/client/public/index.js'),
+  entry: path.resolve(__dirname, './app/client/public/index.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.bundled.js',

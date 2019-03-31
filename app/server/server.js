@@ -6,7 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 
 const mongoose = require('./util/MongooseClient');
 mongoose.connect();
