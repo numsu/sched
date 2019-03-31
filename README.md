@@ -10,3 +10,13 @@ npm i
 npm run client-dev
 npm run server-dev
 ```
+
+# Build Docker image
+```
+npm run build:prod
+```
+
+# Run with docker
+```
+docker-compose up -d
+```
